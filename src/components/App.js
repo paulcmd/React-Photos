@@ -6,13 +6,14 @@ import SearchBar from './SearchBar'
 
 class App extends React.Component {
 
-    onSearchSubmit = searchTerm => {
-        axios.get('https://api.unsplash.com/search/photos', {
+    async onSearchSubmit(searchTerm) {
+       const response = await axios.get('https://api.unsplash.com/search/photos', {
             params: { query: searchTerm },
             headers: {
                 Authorization: 'Client-ID qyy84rqVFb3jX6sbDQG7SSLDiznio3Hc11gFp3LoKZs'
             }
         })
+        console.log(response.data.results)
     }
 
 
@@ -39,4 +40,6 @@ Props can only go down - parent to child. but we need to send items in state(sea
 so App can send the term to the api. thus we created onSearchSubmit and passed the function as a prop
 down to onFormSubmit where we pass the search term in state to it. the function is referenced
 in searchBar but actually runs in App.js
+
+9 - why is onSearchSubmit not an arrow funtion??
 */
